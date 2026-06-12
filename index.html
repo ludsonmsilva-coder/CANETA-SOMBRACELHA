@@ -283,10 +283,10 @@ footer a{color:var(--gold);text-decoration:none}
       <div class="msg msg-bot">Oi! 💄 Sou a Isabela, consultora da loja. Me pergunte qualquer coisa sobre a caneta!</div>
     </div>
     <div class="quick" id="quick-btns">
-      <button class="qbtn" onclick="sendQuick('A caneta dói?')">Dói usar?</button>
-      <button class="qbtn" onclick="sendQuick('Como recarregar?')">Como recarregar?</button>
-      <button class="qbtn" onclick="sendQuick('Serve para pele sensível?')">Pele sensível?</button>
-      <button class="qbtn" onclick="sendQuick('Como comprar?')">Como comprar?</button>
+      <button class="qbtn" onclick="sendQuick('Dói mesmo?')">❌ Dói?</button>
+      <button class="qbtn" onclick="sendQuick('Como carrega?')">🔌 Bateria</button>
+      <button class="qbtn" onclick="sendQuick('Pele sensível?')">✨ Sensível</button>
+      <button class="qbtn" onclick="sendQuick('Quanto custa?')">💰 Preço</button>
     </div>
     <div class="chat-inp">
       <input type="text" id="cinput" placeholder="Sua dúvida aqui..." maxlength="300">
@@ -336,83 +336,102 @@ function sendQuick(t){
 function getReply(msg){
   const m=msg.toLowerCase();
   
-  // CUMPRIMENTOS E SAUDAÇÕES
+  // CUMPRIMENTOS E SAUDAÇÕES - MAIS CALOROSOS
   if(m.includes('ola') || m.includes('olá') || m.includes('oi ') || m.includes('oi,') || m.includes('opa') || m.includes('e aí') || m.includes('oie') || m.includes('bom dia') || m.includes('boa tarde') || m.includes('boa noite') || m.includes('tudo bem') || m.includes('meu nome é')){
-    return 'Olá! Seja muito bem-vinda. 😊 Meu nome é Isabela e estou aqui para ajudar com qualquer dúvida sobre a Caneta Removedora de Sobrancelhas. Como posso ajudar você hoje?';
+    return 'Oi! Que bom ter você aqui 😊 Posso te contar tudo sobre nossa Caneta Depiladora — deixa as sobrancelhas perfeitas sem dor nenhuma! O que você gostaria de saber?';
   }
   
   // SOBRE O PRODUTO
   if(m.includes('fale sobre') || m.includes('me conta') || m.includes('qual é') || m.includes('o que é') || m.includes('características') || m.includes('benefício') || m.includes('para que serve') || (m.includes('produto') && !m.includes('preço'))){
-    return '✨ A Caneta Removedora de Sobrancelhas é um dispositivo elétrico que remove pelos de forma rápida, prática e INDOLOR! Ela tem LED embutido para precisão, carrega via USB e cabe na bolsa. Funciona em sobrancelhas, buço, queixo e rosto. Por apenas R$ 35,99, você economiza meses de salão! Quer saber mais sobre algo específico?';
+    return '✨ Caneta elétrica que remove pelos de forma rápida e INDOLOR! Tem LED embutido na ponta (vê até os pelinhos mais finos), carrega via USB e cabe na bolsa. Funciona em sobrancelha, buço, queixo e rosto. Por R$ 35,99, você economiza meses de salão! 💁‍♀️';
   }
   
-  // Respostas prioritárias (mais específicas primeiro)
-  
-  // FRETE
+  // FRETE - DEIXAR MUITO CLARO
   if(m.includes('frete') || m.includes('envio') || m.includes('entrega')){
-    return 'O valor do frete é calculado automaticamente na etapa de checkout após informar o CEP. 📦';
+    if(m.includes('valor') || m.includes('custa') || m.includes('preço') || m.includes('quanto')){
+      return 'O frete NÃO é grátis — o valor varia conforme sua cidade. Clica em Comprar e digita seu CEP que o sistema calcula na hora! 📦';
+    }
+    if(m.includes('prazo') || m.includes('demora') || m.includes('quando')){
+      return 'O prazo aparece no checkout quando você informa o CEP. Entregamos em todo o Brasil! ✈️';
+    }
+    return 'Entrega em todo o Brasil! O frete é calculado no checkout conforme seu CEP. 📦';
   }
   
-  // COMO FUNCIONA / FUNCIONA MESMO
-  if(m.includes('como funciona') || m.includes('funciona') || m.includes('como usa') || m.includes('uso')){
-    return 'A caneta remove os pelos indesejados de forma rápida, prática e indolor, proporcionando acabamento preciso e aparência bem cuidada. Clique em Comprar para garantir a sua agora! 🎯';
+  // COMO FUNCIONA
+  if(m.includes('como funciona') || m.includes('funciona') || m.includes('como usa') || m.includes('uso') || m.includes('como usar')){
+    return '⚡ Bem simples: liga a caneta, desliza suavemente na pele com movimentos curtos e prontos — sobrancelhas perfeitas em segundos! A LED ilumina pra você enxergar cada pelinhos. Rápido, prático e indolor! 🎯';
   }
   
-  // DÓI / DOR / DOLOROSA
-  if(m.includes('dói') || m.includes('dor') || m.includes('dolorosa') || m.includes('doerá')){
-    return 'Não. A tecnologia foi desenvolvida para remover os pelos de forma suave e confortável. Você pode garantir a sua agora mesmo clicando no botão Comprar. 🤍';
+  // DÓI - DEIXAR CLARO QUE NÃO DÓI
+  if(m.includes('dói') || m.includes('dor') || m.includes('dolorosa') || m.includes('doerá') || m.includes('dói mesmo') || m.includes('é dolorosa')){
+    return 'NÃO DÓI NADA! 🤍 A lâmina apara os pelos sem tocar na pele. É tão suave que pareça que passa um dedo só. Hipoalergênica — até pele sensível usa tranquilo!';
   }
   
-  // QUANTO TEMPO DURA / DURABILIDADE
-  if(m.includes('dura') || m.includes('durabilidade') || m.includes('quanto tempo') || m.includes('quanto duran')){
-    return 'A durabilidade varia conforme a frequência de uso, mas foi projetada para uso prolongado. Essa é uma ótima oportunidade para ter sobrancelhas sempre bem cuidadas! 🎁';
+  // DURABILIDADE / QUANTO TEMPO DURA
+  if(m.includes('dura') || m.includes('durabilidade') || m.includes('quanto tempo') || m.includes('quanto duran') || m.includes('quanto tempo dura')){
+    return 'A bateria dura até 45 minutos por carga (carrega em 8h via USB). Pra fazer sobrancelha, isso dura semanas! ⚡';
   }
   
   // SEGURA / SEGURANÇA
-  if(m.includes('segura') || m.includes('segurança') || m.includes('risco') || m.includes('perigosa')){
-    return 'Sim. O produto foi desenvolvido para uso facial e remoção delicada dos pelos. Clique em Comprar para ter sobrancelhas bem cuidadas sem procedimentos frequentes. 🛡️';
+  if(m.includes('segura') || m.includes('segurança') || m.includes('risco') || m.includes('perigosa') || m.includes('é segura')){
+    return 'Totalmente segura! 🛡️ Hipoalergênica, desenvolvida pra uso facial, não causa vermelhidão nem irrita. Pele sensível? Ótimo pra você também!';
   }
   
   // PREÇO / VALOR
-  if(m.includes('preço') || m.includes('valor') || m.includes('custa') || m.includes('quanto é')){
+  if(m.includes('preço') || m.includes('valor') || m.includes('custa') || m.includes('quanto custa') || m.includes('quanto é') || m.includes('tabela') || m.includes('valores')){
     if(m.includes('frete')){
-      return 'O valor do frete é calculado automaticamente na etapa de checkout após informar o CEP. 📦';
+      return 'O produto é R$ 35,99! O frete varia por cidade — clika em Comprar e calcula no checkout. 💰';
     }
-    return 'R$ 35,99! Além de economizar com salão, você tem acabamento profissional todos os dias em casa. Clique em Comprar para garantir a sua! 💰';
+    return 'Tá em promoção por R$ 35,99! Era R$ 41,39. Economiza muito comparado com salão (que cobra até R$ 80 por sessão)! 💁‍♀️';
   }
   
   // GARANTIA
-  if(m.includes('garantia') || m.includes('devolve') || m.includes('reembolso')){
-    return 'Temos 7 dias de garantia. Para dúvidas sobre a política específica, você pode conferir durante o checkout. Clique em Comprar agora! 🛒';
+  if(m.includes('garantia') || m.includes('devolve') || m.includes('reembolso') || m.includes('garante')){
+    return 'Sim! 7 dias de garantia — se não gostar, devolve e recebe o dinheiro de volta 100%! 🛡️';
   }
   
   // PELE SENSÍVEL
-  if(m.includes('pele sensível') || m.includes('sensível') || m.includes('alergia') || m.includes('reação')){
-    return 'O produto é hipoalergênico e foi desenvolvido para uso seguro em pele sensível. Essa é uma ótima oportunidade para ter sobrancelhas bem cuidadas sem irritações! Clique em Comprar. ✨';
+  if(m.includes('pele sensível') || m.includes('sensível') || m.includes('alergia') || m.includes('reação') || m.includes('acne')){
+    return 'Perfeita pra pele sensível! 💚 Hipoalergênica, não causa vermelhidão nem irritação. Muitas clientes com pele sensível adoram!';
   }
   
-  // TAMANHO / ESPECIFICAÇÕES
-  if(m.includes('tamanho') || m.includes('dimensões') || m.includes('especificações') || m.includes('medidas')){
-    return 'A caneta tem 13,5cm de comprimento e é super discreta — cabe facilmente na bolsa para retoques em qualquer lugar. Clique em Comprar para garantir a sua! 👜';
+  // TAMANHO / LEVA NA BOLSA
+  if(m.includes('tamanho') || m.includes('dimensões') || m.includes('especificações') || m.includes('medidas') || m.includes('cabe') || m.includes('bolsa')){
+    return 'Pequenininha! 13,5cm × 1,8cm — parece uma caneta de verdade! 👜 Cabe na bolsa, necessaire, tudo. Super discreta pra retoques!';
+  }
+  
+  // ONDE USAR / SERVE PRA
+  if(m.includes('serve') || m.includes('funciona') || m.includes('onde usar') || m.includes('buço') || m.includes('axilas') || m.includes('pernas')){
+    return '💁‍♀️ Sobrancelha, buço, queixo e lateral do rosto — perfeita! ❌ NÃO serve pra pernas ou axilas — é só pra rosto.';
   }
   
   // ONDE COMPRAR / COMPRAR
-  if(m.includes('comprar') || m.includes('onde compro') || m.includes('como compro')){
-    return 'Você pode garantir a sua agora mesmo clicando no botão Comprar verde na página. O checkout é 100% seguro via Kaiross. 🛒';
+  if(m.includes('comprar') || m.includes('onde compro') || m.includes('como compro') || m.includes('link') || m.includes('quero comprar')){
+    return 'Clika no botão COMPRAR AGORA (verde) na página! 🛒 Checkout 100% seguro via Kaiross. Pronto em segundos!';
   }
   
-  // RECARREGÁVEL / BATERIA
-  if(m.includes('recarregável') || m.includes('bateria') || m.includes('carrega') || m.includes('usb')){
-    return 'Sim! Carrega via USB como um celular. Durabilidade de até 45 minutos de uso contínuo. Super prática e econômica! Clique em Comprar. ⚡';
+  // RECARREGÁVEL / BATERIA / USB
+  if(m.includes('recarregável') || m.includes('bateria') || m.includes('carrega') || m.includes('usb') || m.includes('como carrega') || m.includes('pilha')){
+    return 'Via USB! ⚡ Carrega igual ao celular, em aproximadamente 8h. Sem pilhas, sem gasto extra. Super econômico!';
   }
   
-  // INTERESSE / RESPOSTA POSITIVA
-  if(m.includes('quero') || m.includes('interessad') || m.includes('vou comprar') || m.includes('gostei')){
-    return 'Ótimo! Essa é uma oportunidade incrível para ter sobrancelhas sempre bem cuidadas sem gastar com procedimentos frequentes. Clique em Comprar agora! 🎉';
+  // INTERESSE / RESPOSTA POSITIVA / GOSTOU
+  if(m.includes('quero') || m.includes('interessad') || m.includes('vou comprar') || m.includes('gostei') || m.includes('achei legal') || m.includes('quer')){
+    return '💫 Eba! Você vai amar! Clika no botão Comprar agora e garante a sua! Tem 7 dias de garantia, é risco zero! 🎉';
   }
   
-  // RESPOSTA PADRÃO
-  return 'No momento não possuo essa informação específica, mas posso ajudar com dúvidas sobre a Caneta Removedora de Sobrancelhas. Você pode garantir a sua agora mesmo clicando em Comprar! 😊';
+  // JÁ TEM / FEEDBACK POSITIVO
+  if(m.includes('já tenho') || m.includes('já comprei') || m.includes('comprei') || m.includes('chegou')){
+    return 'Que legal! Tá adorando? 💕 Deixa uma avaliação pra ajudar outras meninas a conhecer! Aproveita e divulga pra seus amigas!';
+  }
+  
+  // LED / ESPECIFICAÇÕES
+  if(m.includes('led') || m.includes('ilumina') || m.includes('lâmina') || m.includes('tecnologia')){
+    return 'Tem LED na ponta! 💡 Ilumina todo pelinhos mais finos que você não enxergava antes. A lâmina é premium e super suave!';
+  }
+  
+  // RESPOSTA PADRÃO - COM OPÇÕES
+  return 'Boa pergunta! 😊 Posso ajudar com: Dói? Como funciona? Pele sensível? Preço? Frete? Bateria? Onde usar? Clika em Comprar pra mais detalhes! 🛒';
 }
 
 async function sendMessage(){
