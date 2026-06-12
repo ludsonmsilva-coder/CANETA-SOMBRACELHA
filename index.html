@@ -336,9 +336,9 @@ function sendQuick(t){
 function getReply(msg){
   const m=msg.toLowerCase();
   
-  // CUMPRIMENTOS
-  if(m.includes('ola') || m.includes('olá') || m.includes('oi ') || m.includes('oi,') || m.includes('opa') || m.includes('e aí') || m.includes('oie')){
-    return 'Oi! 👋 Sou a Isabela, consultora da loja. Como posso ajudar com a Caneta Removedora de Sobrancelhas?';
+  // CUMPRIMENTOS E SAUDAÇÕES
+  if(m.includes('ola') || m.includes('olá') || m.includes('oi ') || m.includes('oi,') || m.includes('opa') || m.includes('e aí') || m.includes('oie') || m.includes('bom dia') || m.includes('boa tarde') || m.includes('boa noite') || m.includes('tudo bem') || m.includes('meu nome é')){
+    return 'Olá! Seja muito bem-vinda. 😊 Meu nome é Isabela e estou aqui para ajudar com qualquer dúvida sobre a Caneta Removedora de Sobrancelhas. Como posso ajudar você hoje?';
   }
   
   // Respostas prioritárias (mais específicas primeiro)
