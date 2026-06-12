@@ -337,49 +337,72 @@ function getReply(msg){
   const m=msg.toLowerCase();
   
   // Respostas prioritárias (mais específicas primeiro)
+  
+  // FRETE
   if(m.includes('frete') || m.includes('envio') || m.includes('entrega')){
-    if(m.includes('valor') || m.includes('custa') || m.includes('preço') || m.includes('cust')){
-      return 'O frete varia por cidade. Clica em Comprar agora e a Kaiross calcula o valor exato pra você! 📦';
-    }
-    if(m.includes('cidade') || m.includes('minha') || m.includes('estado') || m.includes('prazo')){
-      return 'Clica em Comprar agora! No checkout a Kaiross calcula frete + prazo pra sua cidade. 🏙️';
-    }
-    return 'Entregamos em TODO o Brasil! Clica em Comprar agora pra ver o frete da sua região. 🚚';
+    return 'O valor do frete é calculado automaticamente na etapa de checkout após informar o CEP. 📦';
   }
   
-  if(m.includes('preço') || m.includes('valor') || m.includes('cust')){
+  // COMO FUNCIONA / FUNCIONA MESMO
+  if(m.includes('como funciona') || m.includes('funciona') || m.includes('como usa') || m.includes('uso')){
+    return 'A caneta remove os pelos indesejados de forma rápida, prática e indolor, proporcionando acabamento preciso e aparência bem cuidada. Clique em Comprar para garantir a sua agora! 🎯';
+  }
+  
+  // DÓI / DOR / DOLOROSA
+  if(m.includes('dói') || m.includes('dor') || m.includes('dolorosa') || m.includes('doerá')){
+    return 'Não. A tecnologia foi desenvolvida para remover os pelos de forma suave e confortável. Você pode garantir a sua agora mesmo clicando no botão Comprar. 🤍';
+  }
+  
+  // QUANTO TEMPO DURA / DURABILIDADE
+  if(m.includes('dura') || m.includes('durabilidade') || m.includes('quanto tempo') || m.includes('quanto duran')){
+    return 'A durabilidade varia conforme a frequência de uso, mas foi projetada para uso prolongado. Essa é uma ótima oportunidade para ter sobrancelhas sempre bem cuidadas! 🎁';
+  }
+  
+  // SEGURA / SEGURANÇA
+  if(m.includes('segura') || m.includes('segurança') || m.includes('risco') || m.includes('perigosa')){
+    return 'Sim. O produto foi desenvolvido para uso facial e remoção delicada dos pelos. Clique em Comprar para ter sobrancelhas bem cuidadas sem procedimentos frequentes. 🛡️';
+  }
+  
+  // PREÇO / VALOR
+  if(m.includes('preço') || m.includes('valor') || m.includes('custa') || m.includes('quanto é')){
     if(m.includes('frete')){
-      return 'O frete varia por cidade. Clica em Comprar pra ver o valor total da entrega. 📦';
+      return 'O valor do frete é calculado automaticamente na etapa de checkout após informar o CEP. 📦';
     }
-    return 'R$ 35,99! Era R$ 41,39. Tá barato pra qualidade. 🎯';
+    return 'R$ 35,99! Além de economizar com salão, você tem acabamento profissional todos os dias em casa. Clique em Comprar para garantir a sua! 💰';
   }
   
-  // Respostas genéricas
-  const responses={
-    dói:['Não! A caneta é super suave e indolor. Tem uma lâmina especial que desliza na pele sem ferir. 🤍'],
-    dor:['Nada de dor! É tão suave quanto passar um dedo na pele. Pele sensível também fica ok! 💚'],
-    recarreg:['Carrega via USB como celular! 8h de carga = 45 min de uso. Rápido e prático. ⚡'],
-    usb:['USB sim! Igual carregador do iPhone. Basta plugar e deixar carregando. Bem fácil! 🔌'],
-    pele:['Funciona de maravilha em pele sensível! A lâmina é hipoalergênica e não irrita. ✨'],
-    sensível:['Sim, nossa! Pele sensível não vai ter problema. Muitas clientes sensíveis compram. 💖'],
-    comprar:['Clica no botão verde "Comprar agora" aqui da página! Checkout 100% seguro via Kaiross. 🛒'],
-    pagamento:['Pagamos via Kaiross — super seguro! Cartão, PIX, boleto. Tudo tranquilo. 💳'],
-    promo:['Promoção por tempo limitado! R$ 35,99 com garantia 7 dias. Aproveita! ⏰'],
-    servo:['Serve pra sobrancelha, buço, queixo e rosto. Mas NÃO é pra axilas/pernas. 🎨'],
-    perna:['Não recomendo pra perna/axilas! É pro rosto mesmo. Pra sobrancelha é perfeita! 💁‍♀️'],
-    axila:['Não serve pra axilas! É pra rosto: sobrancelha, buço, queixo. Muito bom! ✨'],
-    garantia:['7 dias de garantia! Se não gostar, devolve o dinheiro. Clica em Comprar! 🛡️'],
-    tamanho:['Pequenininha! 13,5cm x 1,8cm — cabe na bolsa, discreta mesmo. 👜'],
-    bolsa:['Cabe na bolsa sim! É do tamanho de uma caneta mesmo. Leva pra qualquer lugar! ✈️'],
-    led:['Tem um LED que ilumina a ponta! Você vê até os pelinhos mais fininhos. 💡'],
-    lâmina:['A lâmina é premium, suave e hipoalergênica. Não deixa marca nem irrita. 🔪']
-  };
-  
-  for(const [key, msgs] of Object.entries(responses)){
-    if(m.includes(key)) return msgs[Math.floor(Math.random()*msgs.length)];
+  // GARANTIA
+  if(m.includes('garantia') || m.includes('devolve') || m.includes('reembolso')){
+    return 'Temos 7 dias de garantia. Para dúvidas sobre a política específica, você pode conferir durante o checkout. Clique em Comprar agora! 🛒';
   }
   
-  return 'Ótima pergunta! 😊 Clique no botão Comprar agora e tira suas dúvidas no checkout!';
+  // PELE SENSÍVEL
+  if(m.includes('pele sensível') || m.includes('sensível') || m.includes('alergia') || m.includes('reação')){
+    return 'O produto é hipoalergênico e foi desenvolvido para uso seguro em pele sensível. Essa é uma ótima oportunidade para ter sobrancelhas bem cuidadas sem irritações! Clique em Comprar. ✨';
+  }
+  
+  // TAMANHO / ESPECIFICAÇÕES
+  if(m.includes('tamanho') || m.includes('dimensões') || m.includes('especificações') || m.includes('medidas')){
+    return 'A caneta tem 13,5cm de comprimento e é super discreta — cabe facilmente na bolsa para retoques em qualquer lugar. Clique em Comprar para garantir a sua! 👜';
+  }
+  
+  // ONDE COMPRAR / COMPRAR
+  if(m.includes('comprar') || m.includes('onde compro') || m.includes('como compro')){
+    return 'Você pode garantir a sua agora mesmo clicando no botão Comprar verde na página. O checkout é 100% seguro via Kaiross. 🛒';
+  }
+  
+  // RECARREGÁVEL / BATERIA
+  if(m.includes('recarregável') || m.includes('bateria') || m.includes('carrega') || m.includes('usb')){
+    return 'Sim! Carrega via USB como um celular. Durabilidade de até 45 minutos de uso contínuo. Super prática e econômica! Clique em Comprar. ⚡';
+  }
+  
+  // INTERESSE / RESPOSTA POSITIVA
+  if(m.includes('quero') || m.includes('interessad') || m.includes('vou comprar') || m.includes('gostei')){
+    return 'Ótimo! Essa é uma oportunidade incrível para ter sobrancelhas sempre bem cuidadas sem gastar com procedimentos frequentes. Clique em Comprar agora! 🎉';
+  }
+  
+  // RESPOSTA PADRÃO
+  return 'No momento não possuo essa informação específica, mas posso ajudar com dúvidas sobre a Caneta Removedora de Sobrancelhas. Você pode garantir a sua agora mesmo clicando em Comprar! 😊';
 }
 
 async function sendMessage(){
