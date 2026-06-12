@@ -454,7 +454,7 @@ async function sendMessage(){
     const reply=getReply(txt);
     hist.push({role:'assistant',content:reply});
     addMsg(reply,'bot');
-  },1500);
+  },5000);
 }
 
 function addMsg(txt,type){
