@@ -333,6 +333,37 @@ function sendQuick(t){
   sendMessage();
 }
 
+function getReply(msg){
+  const m=msg.toLowerCase();
+  
+  const responses={
+    dói:['Não! A caneta é super suave e indolor. Tem uma lâmina especial que desliza na pele sem ferir. 🤍'],
+    dor:['Nada de dor! É tão suave quanto passar um dedo na pele. Pele sensível também fica ok! 💚'],
+    recarreg:['Carrega via USB como celular! 8h de carga = 45 min de uso. Rápido e prático. ⚡'],
+    usb:['USB sim! Igual carregador do iPhone. Basta plugar e deixar carregando. Bem fácil! 🔌'],
+    pele:['Funciona de maravilha em pele sensível! A lâmina é hipoalergênica e não irrita. ✨'],
+    sensível:['Sim, nossa! Pele sensível não vai ter problema. Muitas clientes sensíveis compram. 💖'],
+    comprar:['Clica no botão verde "Comprar agora" aqui da página! Checkout 100% seguro via Kaiross. 🛒'],
+    preço:['Tá só R$ 35,99! Era R$ 41,39 antes. Achamos que tá barato pra qualidade. 🎯'],
+    promo:['Promoção por tempo limitado! R$ 35,99 com garantia 7 dias. Aproveita! ⏰'],
+    servo:['Serve pra sobrancelha, buço, queixo e rosto. Mas NÃO é pra axilas/pernas. 🎨'],
+    perna:['Não recomendo pra perna/axilas! É pro rosto mesmo. Pra sobrancelha é perfeita! 💁‍♀️'],
+    axila:['Não serve pra axilas! É pra rosto: sobrancelha, buço, queixo. Muito bom! ✨'],
+    garantia:['7 dias de garantia! Se não gostar, a gente devolve seu dinheiro, tranquilo. 🛡️'],
+    entrega:['Entregamos em todo o Brasil! Chegará rápido na sua casa. ✈️'],
+    tamanho:['Pequenininha! 13,5cm x 1,8cm — cabe na bolsa, discreta mesmo. 👜'],
+    bolsa:['Cabe na bolsa sim! É do tamanho de uma caneta mesmo. Leva pra qualquer lugar! ✈️'],
+    led:['Tem um LED que ilumina a ponta! Você vê até os pelinhos mais fininhos. 💡'],
+    lâmina:['A lâmina é premium, suave e hipoalergênica. Não deixa marca nem irrita. 🔪']
+  };
+  
+  for(const [key, msgs] of Object.entries(responses)){
+    if(m.includes(key)) return msgs[Math.floor(Math.random()*msgs.length)];
+  }
+  
+  return 'Boa pergunta! 😊 Clique no botão Comprar pra continuar ou chama a gente no WhatsApp!';
+}
+
 async function sendMessage(){
   const inp=document.getElementById('cinput');
   const txt=inp.value.trim();
@@ -348,21 +379,12 @@ async function sendMessage(){
   document.getElementById('chat-msgs').appendChild(typing);
   scrollChat();
 
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,system:CTX,messages:hist})
-    });
-    const d=await r.json();
+  setTimeout(()=>{
     document.getElementById('typing')?.remove();
-    const reply=d?.content?.[0]?.text||'Clique no botão Comprar para continuar! 😊';
+    const reply=getReply(txt);
     hist.push({role:'assistant',content:reply});
     addMsg(reply,'bot');
-  }catch(e){
-    document.getElementById('typing')?.remove();
-    addMsg('Erro de conexão. Clique em Comprar agora para continuar! 😊','bot');
-  }
+  },800);
 }
 
 function addMsg(txt,type){
