@@ -339,17 +339,17 @@ function getReply(msg){
   // Respostas prioritárias (mais específicas primeiro)
   if(m.includes('frete') || m.includes('envio') || m.includes('entrega')){
     if(m.includes('valor') || m.includes('custa') || m.includes('preço') || m.includes('cust')){
-      return 'O frete é GRÁTIS! 🎉 Já está incluído no preço final de R$ 35,99. Sem custos extras!';
+      return 'O frete varia por cidade. Clica em Comprar agora e a Kaiross calcula o valor exato pra você! 📦';
     }
     if(m.includes('cidade') || m.includes('minha') || m.includes('estado') || m.includes('prazo')){
       return 'Clica em Comprar agora! No checkout a Kaiross calcula frete + prazo pra sua cidade. 🏙️';
     }
-    return 'Entregamos em TODO o Brasil! Frete GRÁTIS — já está incluído nos R$ 35,99. 🚚';
+    return 'Entregamos em TODO o Brasil! Clica em Comprar agora pra ver o frete da sua região. 🚚';
   }
   
   if(m.includes('preço') || m.includes('valor') || m.includes('cust')){
     if(m.includes('frete')){
-      return 'Frete é GRÁTIS! Já está nos R$ 35,99. Sem taxas adicionais! 🎉';
+      return 'O frete varia por cidade. Clica em Comprar pra ver o valor total da entrega. 📦';
     }
     return 'R$ 35,99! Era R$ 41,39. Tá barato pra qualidade. 🎯';
   }
