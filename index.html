@@ -336,6 +336,11 @@ function sendQuick(t){
 function getReply(msg){
   const m=msg.toLowerCase();
   
+  // CUMPRIMENTOS
+  if(m.includes('ola') || m.includes('olá') || m.includes('oi ') || m.includes('oi,') || m.includes('opa') || m.includes('e aí') || m.includes('oie')){
+    return 'Oi! 👋 Sou a Isabela, consultora da loja. Como posso ajudar com a Caneta Removedora de Sobrancelhas?';
+  }
+  
   // Respostas prioritárias (mais específicas primeiro)
   
   // FRETE
