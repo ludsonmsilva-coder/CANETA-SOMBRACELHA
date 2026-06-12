@@ -341,6 +341,11 @@ function getReply(msg){
     return 'Olá! Seja muito bem-vinda. 😊 Meu nome é Isabela e estou aqui para ajudar com qualquer dúvida sobre a Caneta Removedora de Sobrancelhas. Como posso ajudar você hoje?';
   }
   
+  // SOBRE O PRODUTO
+  if(m.includes('fale sobre') || m.includes('me conta') || m.includes('qual é') || m.includes('o que é') || m.includes('características') || m.includes('benefício') || m.includes('para que serve') || (m.includes('produto') && !m.includes('preço'))){
+    return '✨ A Caneta Removedora de Sobrancelhas é um dispositivo elétrico que remove pelos de forma rápida, prática e INDOLOR! Ela tem LED embutido para precisão, carrega via USB e cabe na bolsa. Funciona em sobrancelhas, buço, queixo e rosto. Por apenas R$ 35,99, você economiza meses de salão! Quer saber mais sobre algo específico?';
+  }
+  
   // Respostas prioritárias (mais específicas primeiro)
   
   // FRETE
