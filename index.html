@@ -336,6 +336,25 @@ function sendQuick(t){
 function getReply(msg){
   const m=msg.toLowerCase();
   
+  // Respostas prioritárias (mais específicas primeiro)
+  if(m.includes('frete') || m.includes('envio') || m.includes('entrega')){
+    if(m.includes('valor') || m.includes('custa') || m.includes('preço') || m.includes('cust')){
+      return 'O frete é GRÁTIS! 🎉 Já está incluído no preço final de R$ 35,99. Sem custos extras!';
+    }
+    if(m.includes('cidade') || m.includes('minha') || m.includes('estado') || m.includes('prazo')){
+      return 'Clica em Comprar agora! No checkout a Kaiross calcula frete + prazo pra sua cidade. 🏙️';
+    }
+    return 'Entregamos em TODO o Brasil! Frete GRÁTIS — já está incluído nos R$ 35,99. 🚚';
+  }
+  
+  if(m.includes('preço') || m.includes('valor') || m.includes('cust')){
+    if(m.includes('frete')){
+      return 'Frete é GRÁTIS! Já está nos R$ 35,99. Sem taxas adicionais! 🎉';
+    }
+    return 'R$ 35,99! Era R$ 41,39. Tá barato pra qualidade. 🎯';
+  }
+  
+  // Respostas genéricas
   const responses={
     dói:['Não! A caneta é super suave e indolor. Tem uma lâmina especial que desliza na pele sem ferir. 🤍'],
     dor:['Nada de dor! É tão suave quanto passar um dedo na pele. Pele sensível também fica ok! 💚'],
@@ -345,14 +364,7 @@ function getReply(msg){
     sensível:['Sim, nossa! Pele sensível não vai ter problema. Muitas clientes sensíveis compram. 💖'],
     comprar:['Clica no botão verde "Comprar agora" aqui da página! Checkout 100% seguro via Kaiross. 🛒'],
     pagamento:['Pagamos via Kaiross — super seguro! Cartão, PIX, boleto. Tudo tranquilo. 💳'],
-    preço:['R$ 35,99! Era R$ 41,39 antes. A gente acha que é preço ótimo pra qualidade. 🎯'],
-    valor:['Tá R$ 35,99 com DESCONTO! Clica em Comprar agora e aproveita. 💰'],
-    caro:['Não é caro não! Gasta só R$ 35,99. Já economiza fazendo em casa vs salão. 💸'],
     promo:['Promoção por tempo limitado! R$ 35,99 com garantia 7 dias. Aproveita! ⏰'],
-    frete:['Entregamos em TODO o Brasil! Frete já está incluído no preço R$ 35,99. 🚚'],
-    entrega:['Entrega em todo o Brasil! Quando clicar em Comprar, a Kaiross mostra o prazo exato. ✈️'],
-    envio:['Sim, a gente entrega em toda parte do Brasil! Prazo sai no checkout. 📦'],
-    demora:['Chegará rápido! Quando clicar em Comprar, a Kaiross mostra o prazo exato. ⚡'],
     servo:['Serve pra sobrancelha, buço, queixo e rosto. Mas NÃO é pra axilas/pernas. 🎨'],
     perna:['Não recomendo pra perna/axilas! É pro rosto mesmo. Pra sobrancelha é perfeita! 💁‍♀️'],
     axila:['Não serve pra axilas! É pra rosto: sobrancelha, buço, queixo. Muito bom! ✨'],
