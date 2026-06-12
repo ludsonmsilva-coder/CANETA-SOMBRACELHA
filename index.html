@@ -344,13 +344,19 @@ function getReply(msg){
     pele:['Funciona de maravilha em pele sensível! A lâmina é hipoalergênica e não irrita. ✨'],
     sensível:['Sim, nossa! Pele sensível não vai ter problema. Muitas clientes sensíveis compram. 💖'],
     comprar:['Clica no botão verde "Comprar agora" aqui da página! Checkout 100% seguro via Kaiross. 🛒'],
-    preço:['Tá só R$ 35,99! Era R$ 41,39 antes. Achamos que tá barato pra qualidade. 🎯'],
+    pagamento:['Pagamos via Kaiross — super seguro! Cartão, PIX, boleto. Tudo tranquilo. 💳'],
+    preço:['R$ 35,99! Era R$ 41,39 antes. A gente acha que é preço ótimo pra qualidade. 🎯'],
+    valor:['Tá R$ 35,99 com DESCONTO! Clica em Comprar agora e aproveita. 💰'],
+    caro:['Não é caro não! Gasta só R$ 35,99. Já economiza fazendo em casa vs salão. 💸'],
     promo:['Promoção por tempo limitado! R$ 35,99 com garantia 7 dias. Aproveita! ⏰'],
+    frete:['Entregamos em TODO o Brasil! Frete já está incluído no preço R$ 35,99. 🚚'],
+    entrega:['Entrega em todo o Brasil! Quando clicar em Comprar, a Kaiross mostra o prazo exato. ✈️'],
+    envio:['Sim, a gente entrega em toda parte do Brasil! Prazo sai no checkout. 📦'],
+    demora:['Chegará rápido! Quando clicar em Comprar, a Kaiross mostra o prazo exato. ⚡'],
     servo:['Serve pra sobrancelha, buço, queixo e rosto. Mas NÃO é pra axilas/pernas. 🎨'],
     perna:['Não recomendo pra perna/axilas! É pro rosto mesmo. Pra sobrancelha é perfeita! 💁‍♀️'],
     axila:['Não serve pra axilas! É pra rosto: sobrancelha, buço, queixo. Muito bom! ✨'],
-    garantia:['7 dias de garantia! Se não gostar, a gente devolve seu dinheiro, tranquilo. 🛡️'],
-    entrega:['Entregamos em todo o Brasil! Chegará rápido na sua casa. ✈️'],
+    garantia:['7 dias de garantia! Se não gostar, devolve o dinheiro. Clica em Comprar! 🛡️'],
     tamanho:['Pequenininha! 13,5cm x 1,8cm — cabe na bolsa, discreta mesmo. 👜'],
     bolsa:['Cabe na bolsa sim! É do tamanho de uma caneta mesmo. Leva pra qualquer lugar! ✈️'],
     led:['Tem um LED que ilumina a ponta! Você vê até os pelinhos mais fininhos. 💡'],
@@ -361,7 +367,7 @@ function getReply(msg){
     if(m.includes(key)) return msgs[Math.floor(Math.random()*msgs.length)];
   }
   
-  return 'Boa pergunta! 😊 Clique no botão Comprar pra continuar ou chama a gente no WhatsApp!';
+  return 'Ótima pergunta! 😊 Clique no botão Comprar agora e tira suas dúvidas no checkout!';
 }
 
 async function sendMessage(){
